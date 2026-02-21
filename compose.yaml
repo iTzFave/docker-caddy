@@ -32,9 +32,9 @@ configs:
         tls internal
         reverse_proxy localhost:3000
       }
-      https://homer.rootserver:443 {
+      https://homarr.rootserver:443 {
         tls internal
-        reverse_proxy localhost:8100
+        reverse_proxy localhost:7575
       }
 volumes:
   caddy_certs:
