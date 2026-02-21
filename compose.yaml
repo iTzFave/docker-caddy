@@ -1,0 +1,39 @@
+services:
+  caddy:
+    image: caddy:alpine
+    restart: always
+    container_name: caddy
+    volumes:
+      - caddy_certs:/certs
+      - caddy_config:/config
+      - caddy_data:/data
+      - caddy_sites:/srv
+    network_mode: "host"
+    configs:
+      - source: Caddyfile
+        target: /etc/caddy/Caddyfile
+configs:
+  Caddyfile:
+    content: |
+      # Adjust cloud.example.com to your domain below
+      https://nextcloud.rootserver:443 {
+        tls internal
+        reverse_proxy localhost:11000
+      }
+      https://dockhand.rootserver:443 {
+        tls internal
+        reverse_proxy localhost:3500
+      }
+      https://jellyfin.rootserver:443 {
+        tls internal
+        reverse_proxy localhost:8096
+      }
+      https://patchmon.rootserver:443 {
+        tls internal
+        reverse_proxy localhost:3000
+      }
+volumes:
+  caddy_certs:
+  caddy_config:
+  caddy_data:
+  caddy_sites:
