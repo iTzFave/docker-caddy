@@ -36,6 +36,10 @@ configs:
         tls internal
         reverse_proxy localhost:7575
       }
+      https://beszel.rootserver:443 {
+        tls internal
+        reverse_proxy localhost:8090
+      }
 volumes:
   caddy_certs:
   caddy_config:
